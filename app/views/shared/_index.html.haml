@@ -1,0 +1,21 @@
+.chat-main
+  .header
+    .header__group-box
+      %h2.header__group-box__group-name
+        サンプル
+      %ul.header__group-box__member-list
+        %li.header__group-box__member-list__member
+          Member : a
+    .right-header
+      = link_to 'Edit', class:"right-header__button"
+
+  .messages
+    = render partial: 'messages/message'
+
+
+  .form
+    %input{:type => "text",:class => "form__message", :placeholder => "type a message"}
+    %label{:class => 'form__image'}
+      = fa_icon 'picture-o', class: 'icon3'
+      %input{:type =>"file",:class => "hidden"}
+    %input{:type => "submit",:class => "form__submit",:value =>"send"}
