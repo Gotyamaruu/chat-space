@@ -14,8 +14,8 @@
 
 
   .form
-    %input{:type => "text",:class => "form__message", :placeholder => "type a message"}
-    %label{:class => 'form__image'}
+    %input{type: "text",class: "form__message", placeholder: "type a message"}
+    %label{class: 'form__image'}
       = fa_icon 'picture-o', class: 'icon3'
-      %input{:type =>"file",:class => "hidden"}
-    %input{:type => "submit",:class => "form__submit",:value =>"send"}
+      %input{type:"file",class: "hidden"}
+    %input{type: "submit",class: "form__submit",value:"send"}
