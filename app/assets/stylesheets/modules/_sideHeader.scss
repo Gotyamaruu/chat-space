@@ -5,12 +5,13 @@
   background-color: $sidecolor;
   color: $white;
   overflow: scroll;
+
     .side-header__name {
       font-size: 16px;
-    font-weight: bold ;
-    padding: 35px 20px;
-    background-color: $sidecolor;
-    height: 30px;
+      font-weight: bold ;
+      padding: 35px 20px;
+      background-color: $sidecolor;
+      height: 30px;
 
     &__lists {
       float: right;
