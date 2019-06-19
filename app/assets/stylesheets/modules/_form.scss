@@ -1,0 +1,30 @@
+.form {
+  background-color:$formback;
+  box-sizing: border-box;
+  height: 90px;
+  padding: 20px 50px 20px 40px;
+  &__message {
+    border: none;
+    float: left;
+    height: 50px;
+    width: calc(100% - 150px);
+  }
+  input::placeholder {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  &__image {
+    background-color: $white;
+    float: left;
+    height: 50px;
+    padding-right: 15px;
+  .icon3  {
+    position: relative;
+    top: 10px;
+    right: 10px;
+  }
+  .hidden {
+    display: none;
+    }
+  }
+}
