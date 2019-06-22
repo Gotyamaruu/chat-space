@@ -23,16 +23,22 @@ describe MessagesController do
       it 'redners index' do
         expect(response).to render_template :index
       end
-      context 'not log in' do
-        before do
-          get :index, params: { group_id: group.id }
-        end
-        it 'redirects to new_user_session_path' do
-          expect(response).to redirect_to(new_user_session_path)
-        end
+    end
+
+    context 'not log in' do
+      before do
+        get :index, params: { group_id: group.id }
       end
+
+      it 'redirects to new_user_session_path' do
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
   describe '#create' do
     let(:params) { { group_id: group.id, user_id: user.id, message: attributes_for(:message) } }
+
     context 'log in' do
       before do
         login user
@@ -61,7 +67,6 @@ describe MessagesController do
           post :create,
           params: invalid_params
         }
-
         it 'does not count up' do
           expect{ subject }.not_to change(Message, :count)
         end
@@ -72,14 +77,13 @@ describe MessagesController do
         end
       end
     end
-end
-context 'not log in' do
 
-  it 'redirects to new_user_session_path' do
-    post :create, params: params
-    expect(response).to redirect_to(new_user_session_path)
+    context 'not log in' do
+
+      it 'redirects to new_user_session_path' do
+        post :create, params: params
+        expect(response).to redirect_to(new_user_session_path)
         end
       end
     end
   end
-end
