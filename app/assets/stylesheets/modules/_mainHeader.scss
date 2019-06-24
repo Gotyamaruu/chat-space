@@ -1,0 +1,36 @@
+.header {
+  box-sizing: border-box;
+  height: 100px;
+  padding: 0 40px;
+  display: flex;
+  border-bottom: solid 1px $light-glay;
+  overflow: scroll;
+
+  a {
+    color: $light-blue;
+  }
+
+  &__group-box {
+    margin-top: 35px;
+
+    &__group-name {
+      color:$chat-name;
+      font-size: 25px;
+    }
+    &__member-list {
+      color:$light-glay;
+      display: flex;
+      font-size: 20px;
+    }
+  }
+
+  .right-header {
+    border: 1px solid $light-blue;
+    right: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 30px;
+    padding: 0 20px;
+    position: absolute;
+  }
+}

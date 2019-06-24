@@ -1,0 +1,32 @@
+.chat-side {
+  float: left;
+  height: 100vh;
+  width: 300px;
+  background-color: $sidecolor;
+  color: $white;
+  overflow: scroll;
+
+    .side-header__name {
+      font-size: 16px;
+      font-weight: bold ;
+      padding: 35px 20px;
+      background-color: $sidecolor;
+      height: 30px;
+
+    &__lists {
+      float: right;
+      padding-left: 10px;
+      .icon {
+        color: white;
+        position: relative;
+        bottom: 62px;
+        right: 20px;
+      }
+      .icon1 {
+        position: relative;
+        bottom: 85px;
+        right:45px
+      }
+    }
+  }
+}
