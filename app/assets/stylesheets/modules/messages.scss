@@ -1,0 +1,33 @@
+.messages {
+  background-color: $messageback;
+  padding: 46px 40px 0;
+  height: calc(95vh - 190px);
+  overflow: scroll;
+
+  .message {
+    padding-bottom: 40px;
+
+    .message__upper {
+      display: flex;
+      margin-bottom: 10px;
+
+      .message__upper-name {
+        font-size: 14px;
+        font-weight: bold;
+        float: left;
+        padding-right: 10px;
+      }
+
+      .message__upper-date {
+        color: $light-glay;
+        font-size: 12px;
+        padding-left: 10px;
+      }
+    }
+
+    &__upper-text {
+      font-size: 14px;
+      padding-top: 10px;
+    }
+  }
+}
