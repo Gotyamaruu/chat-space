@@ -5,7 +5,11 @@
         = @group.name
       %ul.header__group-box__member-list
         %li.header__group-box__member-list__member
-          nori
+          %p
+            Members:
+            - @group.users.each do |user|
+              %li.member
+              = user.name
     .right-header
       = link_to 'Edit', edit_group_path(@group.id), class: "right-header1"
 
