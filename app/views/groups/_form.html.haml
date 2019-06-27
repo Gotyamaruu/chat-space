@@ -5,6 +5,7 @@
       %ul
         - group.errors.full_messages.each do |message|
           %li= message
+
   .chat-group-form__field
     .chat-group-form__field--left
       = f.label :name, class: 'chat-group-form__label'
@@ -26,8 +27,10 @@
 
   .chat-group-users
     .chat-group-user.clearfix
-      %p.chat-group-user__name
-        = current_user.name
+      %ul.chat-group-user__name
+        - @group.users.each do |user|
+          %li.member
+          = user.name
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
