@@ -7,7 +7,7 @@
         %li.header__group-box__member-list__member
           nori
     .right-header
-      = link_to 'Edit', class: "right-header1"
+      = link_to 'Edit', edit_group_path(@group.id), class: "right-header1"
 
   .messages
     = render partial: 'messages/message', collection: @messages
