@@ -24,6 +24,7 @@
       e.preventDefault();
       var formData = new FormData(this);
       var href = window.location.href;
+
       $.ajax({
         url: href,
         type: "POST",
@@ -43,5 +44,38 @@
       .fail(function() {
         alert('メッセージを入力してください');
       })
+    });
+
+    $(function() {
+      $(function() {
+        if (location.pathname.match(/\/groups\/\d+\/messages/)) {
+          setInterval(update, 5000);
+        }
+      });
+      function update(){
+        if($('.chat__contents__content')[0]){
+          var message_id = $('.chat__contents__content:last').data('message-id');
+        } else {
+          return false
+        }
+
+        $.ajax({
+          url: window.location.href,
+          type: 'GET',
+          data: { id : message_id },
+          dataType: 'json'
+        })
+        .done(function(data){
+          if (data.length){
+          $.each(data, function(i, data){
+            var html = buildHTML(data);
+            $('.chat__contents').append(html)
+          })
+        }
+        })
+        .fail(function(){
+          alert('自動更新に失敗しました')
+        })
+      }
     })
   });
