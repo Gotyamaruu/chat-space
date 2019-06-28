@@ -26,8 +26,10 @@
 
     .chat-group-users
       .chat-group-user.clearfix
-        %p.chat-group-user__name
-          = current_user.name
+        %ul.chat-group-user__name
+          - @group.users.each do |user|
+            %li.menber
+            =user.name
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
