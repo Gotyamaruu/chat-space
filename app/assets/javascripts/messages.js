@@ -1,6 +1,6 @@
   $(document).on('turbolinks:load', function(){
      function buildHTML(message){
-        var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="lower-message__image">`
+        var imagehtml = message.image == null ? "" : `<img src="${message.image.url}" class="lower-message__image">`
         var html = `<div class="message">
                       <div class="message__upper">
                         <div class="message__upper-name">
@@ -46,36 +46,48 @@
       })
     });
 
-    $(function() {
-      $(function() {
-        if (location.pathname.match(/\/groups\/\d+\/messages/)) {
-          setInterval(update, 5000);
-        }
-      });
-      function update(){
-        if($('.chat__contents__content')[0]){
-          var message_id = $('.chat__contents__content:last').data('message-id');
-        } else {
-          return false
-        }
+    function buildinsetHTML(message){
+      var imagehtml = message.image == null ? "" : `<img src="${message.image.url}" class="lower-message__image">`
+      var html = `<div class="message">
+                    <div class="message__upper">
+                      <div class="message__upper-name">
+                      ${message.user_name}
+                      </div>
+                      <div class="message__upper-date">
+                      ${message.created_at}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <p class="message__upper-text">
+                      ${message.content}
+                      </p>
+                      ${imagehtml}
+                    </div>
+                  </div> `
+      return html;
+    }
 
-        $.ajax({
-          url: window.location.href,
-          type: 'GET',
-          data: { id : message_id },
-          dataType: 'json'
-        })
-        .done(function(data){
-          if (data.length){
-          $.each(data, function(i, data){
-            var html = buildHTML(data);
-            $('.chat__contents').append(html)
-          })
-        }
-        })
-        .fail(function(){
-          alert('自動更新に失敗しました')
-        })
-      }
-    })
-  });
+    var reloadMessages = function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      var last_message_id = $('.message:last').data("message-id");
+      $.ajax({
+        url: 'api/messages',
+        type: 'get',
+        dataType: 'json',
+        data: {last_id: last_message_id}
+      })
+      .done(function(messages) {
+      var insethtml = '';
+        messages.forEach(function(message){
+          insethtml =  buildinsetHTML(message);
+          $('.messages').append(insethtml);
+      })
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      })
+      .fail(function() {
+        alert('error');
+      });
+    }
+    };
+   setInterval(reloadMessages, 5000)
+});
