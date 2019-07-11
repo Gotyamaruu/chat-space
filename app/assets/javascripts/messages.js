@@ -1,7 +1,7 @@
   $(document).on('turbolinks:load', function(){
      function buildHTML(message){
-        var imagehtml = message.image == null ? "" : `<img src="${message.image.url}" class="lower-message__image">`
-        var html = `<div class="message">
+        var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="lower-message__image">`
+        var html = `<div class="message" data-message-id=${message.id}>
                       <div class="message__upper">
                         <div class="message__upper-name">
                         ${message.user_name}
@@ -31,14 +31,13 @@
         data: formData,
         dataType: 'json',
         contentType: false,
-        processData: false
+        processData: false,
       })
       .done(function(message){
         var html = buildHTML(message);
       $('.messages').append(html)
       $('.btn').prop('disabled', false);
       $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight},'fast');
-      $('.hidden').remove();
       $("#new_message").get(0).reset();
     })
       .fail(function() {
@@ -46,10 +45,12 @@
       })
     });
 
-    var reloadMessages = function() {
-      if (window.location.href.match(/\/groups\/\d+\/messages/)){
+    $(function(){
+      setInterval(reloadMessages, 3000);
+      });
+    function reloadMessages() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)) {
       var last_message_id = $('.message:last').data("message-id");
-
       $.ajax({
         url: 'api/messages',
         type: 'get',
@@ -67,8 +68,9 @@
       })
       .fail(function() {
         alert('error');
-      });
+      })
+    } else {
+      clearInterval(reloadMessages);
     }
-    };
-   setInterval(reloadMessages, 5000)
-  });
+  };
+});

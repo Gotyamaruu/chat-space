@@ -97,3 +97,5 @@ end
   gem 'font-awesome-rails'
 
   gem 'fog-aws'
+
+  gem 'jquery-turbolinks'

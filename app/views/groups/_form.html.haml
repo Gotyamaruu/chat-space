@@ -23,13 +23,15 @@
     .chat-group-form__field--left
       %label.chat-group-form__label{:for => "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
-
-    .chat-group-users
-      .chat-group-user.clearfix
-        %ul.chat-group-user__name
-          - @group.users.each do |user|
-            %li.menber
-            =user.name
+      .chat-group-users
+        - @group.users.each do |user|
+          .chat-group-user.clearfix
+            =f.hidden_field :user_id, name: "group[user_ids][]",value: user.id
+            %p.chat-group-user__name
+              = user.name
+            - unless user.name == current_user.name
+              %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+                削除
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
