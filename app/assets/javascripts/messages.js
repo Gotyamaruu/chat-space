@@ -46,7 +46,7 @@
     });
 
     $(function(){
-      setInterval(reloadMessages, 3000);
+      setInterval(reloadMessages, 10000);
       });
     function reloadMessages() {
       if (window.location.href.match(/\/groups\/\d+\/messages/)) {
